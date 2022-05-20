@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        'use strict'
+
+        // Tsak_1
+        let a = 1, b = 1, c, d;
+        //пример 1
+        c = ++a;
+        alert(c); // ответ: 2
+        // Сначала делается префиксный инкремент переменной "а", после выводиться алерт уже с результатом 2
+
+        //пример 2
+        d = b++;
+        alert(d); //ответ: 1
+        // Сначала выводиться алерт с переменной "b", а после делается постфиксный инкремент переменной "b"
+
+        //пример 3
+        c = 2 + ++a;
+        alert(c); //ответ: 5
+        // После примера 1 "а" = 2, снова делается инкремент "а" после складывается с 2 и записывается в переменную "с"
+
+        //пример 4
+        d = 2 + b++;
+        alert(d); //ответ: 4
+        alert(a); //3
+        alert(b); //3
+        // После примера 2 "b" = 2, но тут сначала "b" складывается с 2, присваивается значение в переменную
+        // "d", а после "b" инкрементиться и становиться равной 3
+        // Переменная "а" после примера 3 так и остается равной 3
+
+        // Task_2
+        a = 2;
+        let x = 1 + (a *= 2);
+        // Сначала выполняем действия в скобках, а именно вычисляется заначение "а" умножить на 2
+        // Далее полученное число 4 складывается с 1 
+        // В итоге "x" = 5
+
+        // Task_3
+        a = parseInt(Math.random() * 100 - 50);
+        b = parseInt(Math.random() * 100 - 50);
+
+        if (a > 0 && b > 0) {
+            console.log(a + " - " + b + " = " + (a - b));
+        }
+        else if (a < 0 && b < 0) {
+            console.log(a + " * " + b + " = " + (a * b));
+        }
+        else {
+            console.log(a + " + " + b + " = " + (a + b));
+        }
+
+        // Task_4
+        function add(a, b) {
+            return a + b;
+        }
+        function sub(a, b) {
+            return a - b;
+        }
+        function mul(a, b) {
+            return a * b;
+        }
+        function div(a, b) {
+            return a / b;
+        }
+
+        // Task_5
+        // Решил написать JS doc, как для наиболее сложной функции.
+        // Обнаружил, что у меня при default будет возврящаться не number, а string
+        // Поэтому решил кинуть исключение, это правильная стратегия?
+        /**
+         * @param {number} arg1 - Первое число для операции
+         * @param {number} arg2 - Второе число для операции
+         * @param {string} operation - Операция над числами +,-,*,/
+         * @return {number} - Результат операции над числами 
+         * @throw - Исключение, если передана неверная операция
+         * */
+
+        function mathOperation(arg1, arg2, operation) {
+            switch (operation) {
+                case "+":
+                    return add(arg1, arg2);
+                    break;
+                case "-":
+                    return sub(arg1, arg2);
+                    break;
+                case "*":
+                    return mul(arg1, arg2);
+                    break;
+                case "/":
+                    return div(arg1, arg2);
+                    break;
+                default:
+                    throw new UserException("'" + operation + "' - неверная операция\nИспользуй +,-,*,/");
+            }
+        }
+
+        try {
+            console.log(mathOperation(a, b, '+'));
+            console.log(mathOperation(a, b, '-'));
+            console.log(mathOperation(a, b, '*'));
+            console.log(mathOperation(a, b, '/'));
+            console.log(mathOperation(a, b, 'asdgasdg'));
+        }
+        catch (e) {
+            console.log("ОШИБКА!!!\n" + e.message)
+        }
+
+        function UserException(message) {
+            this.message = message;
+            this.name = "Исключение, связанное с неверной операцией";
+        }
+
+
+        // Task_6
+        // Решил попробовать сделать через Map, не уверен, что это действительно эфективнее
+        // чем switch, но выглядит вроде аккуратнее
+        // А еще в отличии от вашей подсказки я решил не работать со строками, а воспользоваться остатком от деления,
+        // чтобы получить последнюю цифру.
+        const suffixMap = new Map([[0, 'рублей'],
+                                   [1, 'рубль'],
+                                   [2, 'рубля'],
+                                   [3, 'рубля'],
+                                   [4, 'рубля'],
+                                   [5, 'рублей'],
+                                   [6, 'рублей'],
+                                   [7, 'рублей'],
+                                   [8, 'рублей'],
+                                   [9, 'рублей']
+        ]);
+        let sum = +prompt("Какую сумму хотите положить в банк: ");
+        if (!isNaN(sum)) {
+            console.log("Ваша сумма в " + sum + " " + suffixMap.get(sum % 10) + " успешно зачислена.");
+        }
+        else {
+            console.log("Вы ввли не чило")
+        }
+
+    </script>
+</body>
+
+</html>
