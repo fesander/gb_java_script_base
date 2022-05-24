@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // Task_1
+        console.log("***** Task_1 *****");
+        for (let i = 0; i <= 10; i++) {
+            if (i == 0) {
+                console.log(i + " - это ноль");
+            }
+            else if (i % 2 == 0) {
+                console.log(i + " - четное число");
+            }
+            else {
+                console.log(i + " - нечетное число");
+            }
+        }
+
+        // Task_2
+        console.log("\n***** Task_2 *****");
+        const post = {
+            author: "John", //вывести этот текст
+            postId: 23,
+            comments: [
+                {
+                    userId: 10,
+                    userName: "Alex",
+                    text: "lorem ipsum",
+                    rating: {
+                        likes: 10,
+                        dislikes: 2 //вывести это число
+                    }
+                },
+                {
+                    userId: 5, //вывести это число
+                    userName: "Jane",
+                    text: "lorem ipsum 2", //вывести этот текст
+                    rating: {
+                        likes: 3,
+                        dislikes: 1
+                    }
+                },
+            ]
+        };
+        console.log(post.author);
+        console.log(post.comments[0].rating.dislikes);
+        console.log(post.comments[1].userId);
+        console.log(post.comments[1].text);
+
+        // Task_3
+        console.log("\n***** Task_3 *****");
+
+        products = [
+            {
+                id: 3,
+                price: 200,
+            },
+            {
+                id: 4,
+                price: 900,
+            },
+            {
+                id: 1,
+                price: 1000,
+            },
+        ];
+
+        products.forEach(product => {
+            product.price *= 0.85;
+        });
+        console.log(products);
+
+        // Task_4
+        console.log("\n***** Task_4 *****");
+        products = [
+            {
+                id: 3,
+                price: 127,
+                photos: [
+                    "1.jpg",
+                    "2.jpg",
+                ]
+            },
+            {
+                id: 5,
+                price: 499,
+                photos: []
+            },
+            {
+                id: 10,
+                price: 26,
+                photos: [
+                    "3.jpg"
+                ]
+            },
+            {
+                id: 8,
+                price: 78,
+            },
+        ];
+        console.log(products.filter(product => {
+            return (product.hasOwnProperty('photos') & product.photos != 0);
+        }))
+        console.log(products.sort((product_1, product_2) => {
+            if (product_1.price < product_2.price) {
+                return -1;
+            }
+        }))
+
+        // Task_5
+        console.log("\n***** Task_5 *****");
+        for (let i = 0; i <= 9; console.log(i++));
+
+        // Task_6
+        console.log("\n***** Task_6 *****");
+        for (let i = 1; i <=20; i++) {
+            let x = ''
+            for(let j = 1; j <=i; j++){
+                x += 'x';
+            }
+            console.log(x);
+        }
+    </script>
+</body>
+
+</html>
