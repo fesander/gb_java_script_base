@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        'use strict';
+        // Task_1
+        console.log("Task_1");
+        function tranformToObj(number) {
+            let myObj = {};
+            if (!Number.isInteger(number)) {
+                console.log(number + " - не целое число");
+                return myObj;
+            }
+            if (number < 0 || number > 999) {
+                console.log("Число " + number + " должно быть в диапазоне от 0 до 999");
+                return myObj;
+            }
+            myObj.hundreds = Math.trunc(number / 100);
+            myObj.tens = Math.trunc((number % 100) / 10);
+            myObj.units = (number % 100) % 10;
+            return myObj;
+        }
+        console.log(tranformToObj(5));
+        console.log(tranformToObj(64));
+        console.log(tranformToObj(743));
+        console.log(tranformToObj(-3));
+        console.log(tranformToObj(1024));
+        console.log(tranformToObj(43.65));
+        console.log(tranformToObj("hello"));
+
+        // Task_1_1
+        // es5
+        console.log("\n\nTask_1_1_es5");
+        function Product(name, price) {
+            this.name = name;
+            this.price = price;
+        }
+
+        Product.prototype.make25PercentDiscount = function() {
+            this.price = this.price * 0.75;
+        }
+
+        let obj1 = new Product('Стул', 2000);
+        console.log(obj1);
+        obj1.make25PercentDiscount();
+        console.log(obj1);
+
+        // es6
+        console.log("\n\nTask_1_1_es6");
+        class Product2 {
+            constructor(name, price) {
+                this.name = name;
+                this.price = price;
+            }
+
+            make25PercentDiscount() {
+                this.price = this.price * 0.75;
+            }
+        }
+
+        let obj2 = new Product2('Стол', 10000);
+        console.log(obj2);
+        obj2.make25PercentDiscount();
+        console.log(obj2);
+
+        // Task_1_2
+        // es5
+        console.log("\n\nTask_1_2_es5");
+        function Post(author, text, date) {
+            this.author = author;
+            this.text = text;
+            this.date = date.getDate() + "-" + date.getMonth() + "-" + date.getFullYear();
+        }
+
+        Post.prototype.edit = function(text) {
+            this.text = text;
+        }
+
+        function AttachedPost(author, text, date) {
+            Post.call(this, author, text, date);
+            this.highlighted = false;
+        }
+
+        AttachedPost.prototype = Object.create(Post.prototype);
+        AttachedPost.prototype.constructor = AttachedPost;
+
+        AttachedPost.prototype.makeTextHighlighted = function() {
+            this.highlighted = true;
+        }
+
+        let obj3 = new AttachedPost('Федор', "Привет, мир", new Date);
+        console.log(obj3);
+        obj3.edit("Изменение тескста");
+        console.log(obj3);
+        obj3.makeTextHighlighted();
+        console.log(obj3);
+
+        // es6
+        console.log("\n\nTask_1_2_es6")
+        class Post2 {
+            constructor(author, text, date) {
+                this.author = author;
+                this.text = text;
+                this.date = date.getDate() + "-" + date.getMonth() + "-" + date.getFullYear();
+            }
+
+            edit = function(text) {
+                this.text = text;
+            }
+        }
+
+        class AttachedPost2 extends Post2 {
+            constructor(author, text, date) {
+                super(author, text, date);
+                this.highlighted = false;
+            }
+
+            makeTextHighlighted = function() {
+                this.highlighted = true;
+            }
+        }
+
+        let obj4 = new AttachedPost('Fedor', "Hello, workd", new Date);
+        console.log(obj4);
+        obj4.edit("chanding the text");
+        console.log(obj4);
+        obj4.makeTextHighlighted();
+        console.log(obj4);
+
+    </script>
+</body>
+</html>
